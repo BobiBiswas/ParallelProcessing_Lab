@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<mpi.h>
+
+int main(int argc ,char** argv)
+{
+    MPI_Init(&argc,&argv);
+
+    int a=6,b=3,rank;
+
+    MPI_Comm_rank(MPI_COMM_WORLD,&rank);
+    if(rank==0){
+        printf("Rank %d Summation : %d\n",rank,a+b);
+    }
+
+    else if(rank==1){
+        printf("Rank %d Subtraction : %d\n",rank,a-b);
+    }
+
+    else if(rank==2){
+        printf("Rank %d Multiplication : %d\n",rank,a*b);
+    }
+
+    else if(rank==3){
+        printf("Rank %d Division : %.2f\n",rank,double(a/b));
+    }
+
+    return MPI_Finalize();
+}
